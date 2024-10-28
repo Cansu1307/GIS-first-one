@@ -77,9 +77,9 @@
 
         .entry-card .actions { /*Bearbeiten und löschen Platz*/
             position: absolute;
-            top: 150px;
+            top: 230px;
             right: 10px;
-            display: flex;
+            display: static;
             gap: 5px;
         }
 
@@ -106,7 +106,7 @@
         }
 
         .entry-card .stars {
-            color: gold;
+            color: rgb(162, 210, 236);
             margin-top: 10px;
         }
 
