@@ -1,116 +1,122 @@
+/* Grundlayout */
+body {
+    font-family: "Times New Roman", Times, serif;
+    display: flex;
+    margin: 0;
+    background-color: #f4f6f7;
+}
 
-        /* Grundlayout */
-        body {
-            font-family: Courier, sans-serif;
-            display: flex;
-            margin: 0;
-            background-color: #f4f6f7;
-        }
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    background-color: #ccc4da;
+    color: #ecf0f1;
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    overflow-y: auto;
+    /*ki*/
+}
 
-        /* Sidebar */
-        .sidebar {
-            width: 200px;
-            background-color: #ac9cc9;
-            color: #ecf0f1;
-            padding: 20px;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            overflow-y: auto;
-        }
+.sidebar h2 {
+    /*Meine Listen Text*/
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 50px;
+    color: #544567
+}
 
-        .sidebar h2 {
-            text-align: center;
-            font-size: 30px;
-            margin-bottom: 50px;
-        }
+.sidebar button {
+    background-color: #544567;
+    color: #ecf0f1;
+    border: none;
+    padding: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    /*Abstand nach oben*/
+    width: 100%;
+}
 
-        .sidebar button {
-            background-color: #544567;
-            color: #ecf0f1;
-            border: none;
-            padding: 20px;
-            cursor: pointer;
-            margin-top: 10px;
-            width: 100%;
-        }
+.folder {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #544567;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
 
-        .folder {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #544567;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-        }
+/* Hauptinhalt */
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+    flex-grow: 1;
+}
 
-        /* Hauptinhalt */
-        .main-content {
-            margin-left: 270px;
-            padding: 20px;
-            flex-grow: 1;
-        }
+.path {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
 
-        .path {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 20px;
-        }
+/* Kasten(grid) damit man mehr hinzufügen kann */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
 
-        /* Kasten(grid) damit man mehr hinzufügen kann */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
+.add-button,
+.entry-card {
+    background-color: #ecf0f1;
+    border: 1px dashed #bdc3c7;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+}
 
-        .add-button, .entry-card {
-            background-color: #ecf0f1;
-            border: 2px dashed #bdc3c7;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 5px;
-            position: relative;
-        }
+.entry-card .actions {
+    /*Bearbeiten und löschen Platz*/
+    position: absolute;
+    top: 230px;
+    right: 10px;
+    display: static;
+    gap: 5px;
+}
 
-        .entry-card .actions { /*Bearbeiten und löschen Platz*/
-            position: absolute;
-            top: 230px;
-            right: 10px;
-            display: static;
-            gap: 5px;
-        }
+.entry-card .actions button {
+    /*icon*/
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-        .entry-card .actions button { /*icon*/
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 16px; 
-        }
+.entry-card h4 {
+    margin-top: 0;
+}
 
-        .entry-card h4 {
-            margin-top: 0;
-        }
+.entry-card p {
+    margin: 5px 0;
+    color: #7f8c8d;
+}
 
-        .entry-card p {
-            margin: 5px 0;
-            color: #7f8c8d;
-        }
+.entry-card small {
+    display: block;
+    margin-top: 5px;
+    color: #95a5a6;
+}
 
-        .entry-card small {
-            display: block;
-            margin-top: 5px;
-            color: #95a5a6;
-        }
+.entry-card .stars {
+    color: rgb(162, 210, 236);
+    margin-top: 10px;
+}
 
-        .entry-card .stars {
-            color: rgb(162, 210, 236);
-            margin-top: 10px;
-        }
-
-        /* Popup */
+/*
         .popup {
             display: none;
             position: fixed;
@@ -150,28 +156,47 @@
             cursor: pointer;
             border-radius: 5px;
         }
+        */
+/* Sterne */
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    font-size: 2em;
+    margin-top: 10px;
+    /* Abstand nach oben */
+}
 
-        /* Sterne */
-        .stars {
-            display: flex;
-            justify-content: center;
-            cursor: pointer;
-        }
+.star-rating input[type="radio"] {
+    display: none;
+    /* Radio Buttons verstecken */
+}
 
-        .star {
-            font-size: 20px;
-            color: #ccc;
-        }
+.star-rating label {
+    color: #ddd;
+    /* Unausgewählte Sterne */
+    cursor: pointer;
+    font-size: 1.5em;
+}
 
-        /* Home-Button */
-        .home-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #544567;
-            text-decoration: none;
-        }
+.star-rating input[type="radio"]:checked~label {
+    color: gold;
+    /* Ausgewählte Sterne */
+}
 
-   
+.star-rating label:hover,
+.star-rating label:hover~label {
+    color: gold;
+    /* Sterne beim Hover farbig anzeigen */
+}
+
+/* Home-Button */
+.home-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #544567;
+    text-decoration: none;
+}
