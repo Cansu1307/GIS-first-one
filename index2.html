@@ -6,7 +6,7 @@
     <title>BingeWatch!</title>
     <link rel="stylesheet" href="styles2.css">
 
-    <!-- Sidebar -->
+    <!--Sidebar-->
 <div class="sidebar">
     <h2>Meine Listen</h2>
     <button>+ Ordner erstellen</button>
@@ -16,13 +16,26 @@
     </div>
 </div>
 
-<!-- Hauptinhalt -->
+<!--Hauptinhalt-->
 <div class="main-content">
-    <a href="#" class="home-button">🏠 Home</a>
+    <a href="#" class="home-button">Home</a>
     <div class="path">Aktueller Pfad: Startseite > Meine Listen</div>
     <div class="grid">
        
-        <!-- Beispiel für eine Karte -->
+        <!--Mein Beispiel: Black Panther-->
+       <div class="entry-card">
+        <div class="actions">
+            <button>✏️</button>
+            <button>🗑️</button>
+        </div>
+        <h4> Black Panther </h4> 
+        <p> Black Panther is eine Science-Fiction-Actionfilm mit dem Hauptcharaketer T'Challa</p> 
+        <small><input placeholder="Genre" ></small> 
+        <p2><input placeholder="Beschreibung"></p2>
+        <div class="stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
+    </div> 
+
+        <!--Beispiel für eine Karte-->
         <div class="entry-card">
             <div class="actions">
                 <button>✏️</button>
@@ -34,9 +47,30 @@
             <p2><input placeholder="Beschreibung"></p2> <!--add in css-->
             <div class="stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
         </div> 
-    
+        <!--Allgemeines Aussehen-->
         <div class="add-button">+ Hinzufügen</div>
     </div>
 </div>
 
+<!-- Popup -->
+<div class="popup" id="popup">
+    <h3>Film/Serie hinzufügen</h3>
+    <input type="text" placeholder="Name">
+    <input type="file">
+    <textarea placeholder="Beschreibung" rows="3"></textarea>
+    <input type="text" placeholder="Genre">
+    <div class="stars">
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+    </div>
+    <textarea placeholder="Notizen" rows="3"></textarea>
+    <div class="popup-footer">
+        <button>Fertig</button>
+    </div>
+</div>
 
+</body>
+</html>
