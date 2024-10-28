@@ -28,7 +28,7 @@ body {
     color: #544567
 }
 
-.sidebar button { 
+.sidebar button {
     background-color: #e9e4f1;
     color: #000000;
     border: none;
@@ -39,7 +39,8 @@ body {
     width: 100%;
 }
 
-.folder { /*Ordner 1&2*/
+.folder {
+    /*Ordner 1&2*/
     margin-top: 20px;
     padding: 10px;
     background-color: #e9e4f1;
@@ -57,9 +58,11 @@ body {
 }
 
 .path {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
+    /*Aktueller Pfad*/
+    font-size: 20px;
+    color: #544567;
+    margin-bottom: 30px;
+    /*Abstamd nach unten*/
 }
 
 /* Kasten(grid) damit man mehr hinzufügen kann */
@@ -70,9 +73,9 @@ body {
 }
 
 .add-button,
-.entry-card {
-    background-color: #ecf0f1;
-    border: 1px dashed #ccc4da;
+.entry-footer {
+    background-color: #ccc4da;
+    border: 1px dashed #544567;
     padding: 20px;
     text-align: center;
     cursor: pointer;
@@ -80,76 +83,85 @@ body {
     position: relative;
 }
 
-.entry-card .actions {
-    /*Bearbeiten und löschen Platz*/
-    position: absolute;
-    display: relative;
-    gap: 5px;
-}
+.entry-footer .actions {/*Bearbeiten und löschen Platz*/
+        text-align: right;
+    }
 
-.entry-card .actions button {
-    background: none;
+
+
+
+
+.entry-footer .actions button {
+    background-color: #544567;
+    color: #ecf0f1;
     border: none;
+    padding: 8px 12px;
     cursor: pointer;
+    border-radius: 5px;
     font-size: 16px;
 }
 
-.entry-card h4 { /*von der Klasse entry card Name*/
+.entry-card h4 {
+    /*von der Klasse entry card Name*/
     margin-top: 0;
     color: #000000;
 }
 
-.entry-card p { /*von der Klasse entry card Beschreibung*/
+.entry-card p {
+    /*von der Klasse entry card Beschreibung*/
     margin: 5px 0;
     color: #000000;
 }
 
-.entry-card small { /*von der Klasse entry card Genre*/
+.entry-card small {
+    /*von der Klasse entry card Genre*/
     display: block;
     margin-top: 5px;
     color: #000000;
 }
 
 
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #ffffff;
-            padding: 20px;
-            width: 300px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-            z-index: 10;
-            border-radius: 8px;
-        }
+    .popup {
+        /*wenn aus geklammert kann man den Pop-up sehen*/
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        padding: 20px;
+        width: 300px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        border-radius: 8px;
+    }
 
-        .popup input, .popup textarea {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 8px;
-            font-size: 14px;
-            border: 1px solid #bdc3c7;
-            border-radius: 5px;
-        }
+    .popup input,
+    .popup textarea {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #bdc3c7;
+        border-radius: 5px;
+    }
 
-        .popup h3 {
-            margin-top: 0;
-        }
+    .popup h3 {
+        margin-top: 0;
+    }
 
-        .popup-footer {
-            text-align: right;
-        }
+    .popup-footer {
+        text-align: right;
+    }
 
-        .popup-footer button {
-            background-color: #544567;
-            color: #ecf0f1;
-            border: none;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+    .popup-footer button {
+        background-color: #544567;
+        color: #ecf0f1;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
 
 /* Sterne */
 .stars {
