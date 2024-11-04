@@ -165,7 +165,7 @@ body {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
-    font-size: 2em;
+    font-size: 1em;
     margin-top: 10px;
     /* Abstand nach oben */
 }
@@ -178,7 +178,7 @@ body {
 .star-rating label {
     color: #ddd;
     /* Unausgewählte Sterne*/
-    cursor: pointer;
+    cursor: pointer; /*Maus selbst*/
     font-size: 1.5em;
 }
 
