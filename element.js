@@ -7,21 +7,30 @@ element3.addEventListener ('click', onclick);
 function onclick (event) {
     element3.style.color = "pink";
 }
-*/
-let film = {
+
+let element2 = document.querySelector(".entry-footer");
+element2.innerHTML = "<p> What's up? </p>"; /*in dem html wird das ganze Text übernommen
+
+let newelement = document.createElement("p");
+newelement.textContent = "heyhey";
+element2.append (newelement);*/
+
+
+
+let film = [{
     title: "Black Panther",
     beschreibung: "Black Panther is eine Science-Fiction-Actionfilm mit dem Hauptcharaketer T'Challa",
     genre: "Science-Fiction",
     notizen: "Ich mag diesen Film sehr, da sie die Kultur von...",
     stars: 5
-}
+}]
 
 console.log(film);
 let filmliste = document.querySelector (".entry-footer");
-filmliste.innerHTML = "<h4>" + film.title + "</h4>" + "<p>" + film.beschreibung + "</p>"; /*ersetzt alles in dem entry-footer mit black panther*/
+/*filmliste.innerHTML = "<h4>" + film.title + "</h4>" + "<p>" + film.beschreibung + "</p>"; /*ersetzt alles in dem entry-footer mit black panther*/
 
 for (let h4 of film) {
-    filmliste.innerHTML += "<h4>" + h4.title + "</h4>" + "<p>" + p.beschreibung + "</p>"; 
+    filmliste.innerHTML += "<h4>" + h4.title + "</h4>" + "<p>" + h4.beschreibung + "</p>"; 
     }
 
     for (let p of film) {
@@ -33,10 +42,8 @@ for (let h4 of film) {
         filmliste.append(h4, pElement);
     }
 
+let filmJSON = JSON.stringify(film);
+localStorage.setItem("film", filmJSON);
 
-/*let element2 = document.querySelector(".entry-footer");
-element2.innerHTML = "<p> What's up? </p>"; /*in dem html wird das ganze Text übernommen
+console.log("hi");
 
-let newelement = document.createElement("p");
-newelement.textContent = "heyhey";
-element2.append (newelement);*/
