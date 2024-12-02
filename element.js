@@ -19,17 +19,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Lokaler Speicher für Einträge
     let entries = JSON.parse(localStorage.getItem("entries")) || [];
  
-    // Zeige das Pop-up bei Klick auf den Button
+    // sollte eig popup für ordner zeigen, idk what happened
   createFolderBtn.addEventListener("click", () => {
     folderPopup.style.display = "block";
 });
 
-// Schließe das Pop-up, wenn "Abbrechen" geklickt wird
+// Schließt Pop-up, wenn "Abbrechen" geklickt wird
 folderPopupCancel.addEventListener("click", () => {
     folderPopup.style.display = "none";
 });
 
-// Hier kannst du speichern-Logik hinzufügen
+// save the folder 
 folderPopupSave.addEventListener("click", () => {
     const folderName = document.getElementById("folderNameInput").value;
     if (folderName) {
@@ -41,14 +41,14 @@ folderPopupSave.addEventListener("click", () => {
 });
     // Einträge anzeigen
     const displayEntries = () => {
-        // Entferne alle Einträge meine Beispiele, außer dem "+ Hinzufügen"-Button
+        // Entferne mein Beispiele von black panther in HTML, außer dem "+ Hinzufügen"-Button
         const allEntries = Array.from(grid.children);
         allEntries.forEach(child => {
             if (child.id !== "addButton") {
                 grid.removeChild(child);
             }
         });
-
+        //soll anzegen
         entries.forEach((entry, index) => {
             const entryDiv = document.createElement("div");
             entryDiv.classList.add("entry-footer");
@@ -68,7 +68,7 @@ folderPopupSave.addEventListener("click", () => {
         });
     };
 
-    // Sterne-Bewertung generieren
+    // Sterne-Bewertung machen
     const generateStarsHTML = (rating) => {
         let starsHTML = "";
         for (let i = 5; i > 0; i--) {
@@ -84,12 +84,12 @@ folderPopupSave.addEventListener("click", () => {
         displayEntries();
     };
 
-    // Einträge speichern
+    // Einträge speichern hopefully, idk if it functions tbh
     const saveEntries = () => {
         localStorage.setItem("entries", JSON.stringify(entries));
     };
 
-    // Popup-Felder leeren
+    // Popup-Felder leer damit man selbst einfuügen kann
     const clearPopupFields = () => {
         popupFields.imageURL.value = "";
         popupFields.name.value = "";
@@ -99,7 +99,7 @@ folderPopupSave.addEventListener("click", () => {
         popupFields.stars.forEach(star => star.checked = false);
     };
 
-    // Popup-Fenster öffnen
+    // Popup-Fenster soll sich öffnen
     addButton.addEventListener("click", () => {
         popup.style.display = "block";
     });
@@ -108,19 +108,19 @@ folderPopupSave.addEventListener("click", () => {
     popupSubmit.addEventListener("click", () => {
         const rating = Array.from(popupFields.stars).find(star => star.checked)?.value || 0;
         const newEntry = {
-            imageURL: popupFields.imageURL.value,
+            imageURL: popupFields.imageURL.value, //einträge bleiben von oben eingegeben
             name: popupFields.name.value,
             description: popupFields.description.value,
             genre: popupFields.genre.value,
             notes: popupFields.notes.value,
             rating: parseInt(rating),
         };
-        addEntry(newEntry);
+        addEntry(newEntry); //neues hinzufügen feld erscheint
         clearPopupFields();
         popup.style.display = "none";
     });
 
-    // Aktionen bearbeiten oder löschen
+    // Aktionen bearbeiten/löschen für Ordner... sollte funktionieren aber ich kann ordner nicht sehen
     grid.addEventListener("click", (event) => {
         const target = event.target;
         const index = target.dataset.index;
@@ -138,7 +138,7 @@ folderPopupSave.addEventListener("click", () => {
             popupFields.stars.forEach(star => star.checked = star.value == entry.rating);
             popup.style.display = "block";
 
-            // Update-Handler für Eintrag
+            // Update-bearbeitung für Eintrag
             popupSubmit.onclick = () => {
                 const rating = Array.from(popupFields.stars).find(star => star.checked)?.value || 0;
                 entries[index] = {
@@ -153,7 +153,7 @@ folderPopupSave.addEventListener("click", () => {
                 displayEntries();
                 clearPopupFields();
                 popup.style.display = "none";
-                popupSubmit.onclick = null; // Reset Submit-Handler
+                popupSubmit.onclick = null; // muss man vlt ändern damit bearbeitetts gleiche stelle bleibt?
             };
         }
     });
