@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("popup");
     const popupSubmit = document.getElementById("popupSubmit");
     const grid = document.getElementById("grid");
+    const createFolderBtn = document.getElementById("createFolderBtn");
+    const folderPopup = document.getElementById("folderPopup");
+    const folderPopupSave = document.getElementById("folderPopupSave");
+    const folderPopupCancel = document.getElementById("folderPopupCancel");
     const popupFields = {
         imageURL: document.getElementById("popupImageURL"),
         name: document.getElementById("popupName"),
@@ -14,7 +18,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Lokaler Speicher für Einträge
     let entries = JSON.parse(localStorage.getItem("entries")) || [];
+ 
+    // Zeige das Pop-up bei Klick auf den Button
+  createFolderBtn.addEventListener("click", () => {
+    folderPopup.style.display = "block";
+});
 
+// Schließe das Pop-up, wenn "Abbrechen" geklickt wird
+folderPopupCancel.addEventListener("click", () => {
+    folderPopup.style.display = "none";
+});
+
+// Hier kannst du speichern-Logik hinzufügen
+folderPopupSave.addEventListener("click", () => {
+    const folderName = document.getElementById("folderNameInput").value;
+    if (folderName) {
+        alert(`Ordner "${folderName}" erstellt!`);
+        folderPopup.style.display = "none";
+    } else {
+        alert("Bitte einen Ordnernamen eingeben!");
+    }
+});
     // Einträge anzeigen
     const displayEntries = () => {
         // Entferne alle Einträge meine Beispiele, außer dem "+ Hinzufügen"-Button

@@ -9,7 +9,7 @@ body {
 /* Sidebar selbst */
 .sidebar {
     width: 200px;
-    background-color: #c9ada7;
+    background-color: #9a8c98;
     color: #ecf0f1;
     padding: 20px;
     height: 100vh;
@@ -20,7 +20,7 @@ body {
 
 }
 .home-button {
-    background-color: #c9ada7;
+    background-color: #9a8c98;
     border: none;
     padding: 10px 15px;
     color: #22223B;
@@ -42,7 +42,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #ffffff;
+    background-color: #9a8c98;
     padding: 20px;
     width: 300px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -61,6 +61,7 @@ body {
 
 .folder-popup h3 {
     margin-top: 0;
+    color: #22223B;
 }
 
 .folder-popup .popup-footer {
@@ -69,7 +70,7 @@ body {
 
 .folder-popup .popup-footer button {
     background-color: #544567;
-    color: #ecf0f1;
+    color: #22223B;
     border: none;
     padding: 6px 10px;
     cursor: pointer;
@@ -127,8 +128,8 @@ body {
 
 .add-button,
 .entry-footer {
-    background-color: #ccc4da;
-    border: 1px dashed #544567;
+    background-color: #C9ada7;
+    border: 1px dashed #22223B;
     padding: 20px;
     text-align: center;
     cursor: pointer;
@@ -265,6 +266,6 @@ body {
     left: 20px;
     font-size: 24px;
     cursor: pointer;
-    color: #544567;
+    color: #22223B;
     text-decoration: none;
 }
