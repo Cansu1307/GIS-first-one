@@ -105,7 +105,7 @@ folderPopupSave.addEventListener("click", () => {
     });
 
     // Popup-Fenster schließen und Eintrag hinzufügen
-    popupSubmit.addEventListener("click", () => {
+    popupSubmit.addEventListener("click", () => { //vor add. 
         const rating = Array.from(popupFields.stars).find(star => star.checked)?.value || 0;
         const newEntry = {
             imageURL: popupFields.imageURL.value, //einträge bleiben von oben eingegeben
@@ -153,7 +153,7 @@ folderPopupSave.addEventListener("click", () => {
                 displayEntries();
                 clearPopupFields();
                 popup.style.display = "none";
-                popupSubmit.onclick = null; // muss man vlt ändern damit bearbeitetts gleiche stelle bleibt?
+                popupSubmit.onclick = null; // muss man vlt ändern damit bearbeitetts gleiche stelle bleibt? nicht .onlick sondern event listen
             };
         }
     });
