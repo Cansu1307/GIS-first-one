@@ -3,122 +3,125 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--damit die Webseite sich den Mobielen Geräten anpasst-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--damit die Webseite sich den Mobielen Geräten anpasst-->
     <title>BingeWatch!</title>
     <link rel="stylesheet" href="styles.css"> <!--reference to css-->
-    <script src = "element.js" defer></script> <!--reference to javascript-->
+    <script src="element.js" defer></script> <!--reference to javascript-->
 </head>
 
 <body>
-    <!--Sidebar-->
-    <div class="sidebar">
-        <h2>Meine Listen</h2>
-        <button> + Ordner erstellen</button>
-        
-        <div class="folders">
-            <div class="folder">Ordner 1</div>
-            <div class="folder">Ordner 2</div>
-        </div>
 
-    </div>
 
-    <!--Hauptinhalt-->
-    <div class="main-content">
-        
-        <a href= "#" class="home-button">Home</a>
-        
-        <div class="path">Aktueller Pfad: Startseite > Meine Listen</div>
-        
-        <div class="grid"> <!--die Atbellen um mehr Sachen einzufügen-->
+        <!--Hauptinhalt-->
+<div class="main-content" id="mainContent">
+    <a href="#" class="home-button" id="homeButton">Home</a>
+    <div class="path" id="currentPath">Aktueller Pfad: Startseite > Meine Listen</div>
 
+<div class="grid" id="grid"> <!--die Tabellen um mehr Sachen einzufügen-->
             <!--Mein Beispiel: Black Panther-->
-            <div class="entry-footer">
-                
-                <img src="blackpanther.jpeg" alt="Bild des Films" style="width: 100%; height: auto;">
-                <h4 id="title"> Black Panther </h4>
-                <p id="beschreibung"> Black Panther is eine Science-Fiction-Actionfilm mit dem Hauptcharaketer T'Challa</p>
-                <p id="genre">Science-Fiction</p>
-                <p id="notizen"> Ich mag diesen Film sehr, da sie die Kultur von...</p>
-                <div class="stars"> <!--KI-->
-                    <input type="radio" id="star5" name="rating1" value="5">
-                    <label for="star5" title="5 stars">★</label>
-                    <input type="radio" id="star4" name="rating1" value="4">
-                    <label for="star4" title="4 stars">★</label>
-                    <input type="radio" id="star3" name="rating1" value="3">
-                    <label for="star3" title="3 stars">★</label>
-                    <input type="radio" id="star2" name="rating1" value="2">
-                    <label for="star2" title="2 stars">★</label>
-                    <input type="radio" id="star1" name="rating1" value="1">
-                    <label for="star1" title="1 star">★</label>
-                </div>
-                <div class="actions"> 
-                <button id="Bearbeiten"> Bearbeiten </button>
-                <button id="Löschen"> Löschen </button>
-                </div>
-            </div>
+    <div class="entry-footer" id="entry1">
+        <img src="blackpanther.jpeg" alt="Bild des Films" style="width: 100%; height: auto;">
+        <h4 id="title1">Black Panther</h4>
+        <p id="description1">Black Panther ist ein Science-Fiction-Actionfilm mit dem Hauptcharakter
+                    T'Challa</p>
+        <p id="genre1">Science-Fiction</p>
+        <p id="notes1">Ich mag diesen Film sehr, da sie die Kultur von...</p>
+        <div class="stars" id="rating1"> <!--KI-->
+            <input type="radio" id="star5entry1" name="rating1" value="5">
+            <label for="star5entry1" title="5 stars">★</label>
+            <input type="radio" id="star4entry1" name="rating1" value="4">
+            <label for="star4entry1" title="4 stars">★</label>
+            <input type="radio" id="star3entry1" name="rating1" value="3">
+            <label for="star3entry1" title="3 stars">★</label>
+            <input type="radio" id="star2entry1" name="rating1" value="2">
+            <label for="star2entry1" title="2 stars">★</label>
+            <input type="radio" id="star1entry1" name="rating1" value="1">
+            <label for="star1entry1" title="1 star">★</label>
+        </div>
+        <div class="actions" id="actions1">
+            <button id="edit1">Bearbeiten</button>
+            <button id="delete1">Löschen</button>
+        </div>
+    </div>
 
             <!--Beispiel für eine Karte-->
-            <div class="entry-footer">
-                    
-                <input type="text" id="imageURL" placeholder="Bild-URL eingeben">
-
-                <h4><input placeholder="Name"></h4> <!--eintippen-->
-
-                <textarea placeholder="Beschreibung" rows="3"></textarea>
+    <div class="entry-footer" id="newEntryTemplate">
+        <input type="text" id="imageURLTemplate" placeholder="Bild-URL eingeben">
+        <h4><input placeholder="Name" id="nameTemplate"></h4> <!--eintippen-->
+        <textarea placeholder="Beschreibung" rows="3" id="descriptionTemplate"></textarea>
                 <!--einstellung damit textfeld größer wird (rows=3 sind linien)-->
+        <p><input placeholder="Genre" id="genreTemplate"></p> <!--eintippen-->
+        <textarea placeholder="Notizen" rows="3" id="notesTemplate"></textarea>
+        <div class="stars" id="ratingTemplate">
+            <input type="radio" id="star5template" name="ratingTemplate" value="5">
+            <label for="star5template" title="5 stars">★</label>
+            <input type="radio" id="star4template" name="ratingTemplate" value="4">
+            <label for="star4template" title="4 stars">★</label>
+            <input type="radio" id="star3template" name="ratingTemplate" value="3">
+            <label for="star3template" title="3 stars">★</label>
+            <input type="radio" id="star2template" name="ratingTemplate" value="2">
+            <label for="star2template" title="2 stars">★</label>
+            <input type="radio" id="star1template" name="ratingTemplate" value="1">
+            <label for="star1template" title="1 star">★</label>
+        </div>
+        <div class="actions" id="actionsTemplate">
+            <button id="editTemplate">Bearbeiten</button>
+            <button id="deleteTemplate">Löschen</button>
+        </div>
+    </div>
 
-                <p><input placeholder="Genre"></p> <!--eintippen-->
 
-                <textarea placeholder="Notizen" rows="3"></textarea>
-
-                <div class="stars"
-                    <input type="radio" id="star5" name="rating1" value="5">
-                    <label for="star5" title="5 stars">★</label>
-                    <input type="radio" id="star4" name="rating1" value="4">
-                    <label for="star4" title="4 stars">★</label>
-                    <input type="radio" id="star3" name="rating1" value="3">
-                    <label for="star3" title="3 stars">★</label>
-                    <input type="radio" id="star2" name="rating1" value="2">
-                    <label for="star2" title="2 stars">★</label>
-                    <input type="radio" id="star1" name="rating1" value="1">
-                    <label for="star1" title="1 star">★</label>
-                </div>
-                <button id="Bearbeiten"> Bearbeiten </button>
-                <button id="Löschen"> Löschen </button>
-            </div>
             <!--Allgemeines Aussehen-->
-            <div class="add-button">+ Hinzufügen</div>
-        </div>
-    </div>
+    <div class="add-button" id="addButton">+ Hinzufügen</div>
+</div>
+</div>
+        <!--Sidebar-->
+        <div class="sidebar" id="sidebar">
+            <a href="#" class="home-button" id="homeButton">Home</a>   
+           
+                <!-- Pop-up für neuen Ordner -->
+                <div class="folder-popup" id="folderPopup">
+                    <h3>Ordner erstellen</h3>
+                    <input type="text" id="folderNameInput" placeholder="Ordnername eingeben">
+                    <div class="popup-footer">
+                        <button id="folderPopupSave">Speichern</button>
+                        <button id="folderPopupCancel">Abbrechen</button>
+                    </div>
+                </div>
 
-    <!-- Popup -->
-    <div class="popup" id="popup">
-        
-        <h3>Film/Serie hinzufügen</h3>
-        <input type="text" id="imageURL" placeholder="Bild-URL eingeben">
-        <input type="text" placeholder="Name">
-        <input type="file">
-        <textarea placeholder="Beschreibung" rows="3"></textarea>
-        <input type="text" placeholder="Genre">
-        <div class="stars"> <!--KI-->
-            <input type="radio" id="star5" name="rating1" value="5">
-            <label for="star5" title="5 stars">★</label>
-            <input type="radio" id="star4" name="rating1" value="4">
-            <label for="star4" title="4 stars">★</label>
-            <input type="radio" id="star3" name="rating1" value="3">
-            <label for="star3" title="3 stars">★</label>
-            <input type="radio" id="star2" name="rating1" value="2">
-            <label for="star2" title="2 stars">★</label>
-            <input type="radio" id="star1" name="rating1" value="1">
-            <label for="star1" title="1 star">★</label>
+                <!-- Buttons oben rechts -->
+                <div class="top-right-buttons">
+                    <button id="editFoldersBtn">Bearbeiten</button>
+                    <button id="deleteFoldersBtn">Löschen</button>
         </div>
-        <textarea placeholder="Notizen" rows="3"></textarea>
-        <div class="popup-footer">
-            <button>Fertig</button>
-        </div>
-   
-    </div>
+        <!-- Popup -->
+        <div class="popup" id="popup">
+            <h3>Film/Serie hinzufügen</h3>
+            <input type="text" id="popupImageURL" placeholder="Bild-URL eingeben">
+            <input type="text" id="popupName" placeholder="Name">
+            <input type="file" id="popupFile">
+            <textarea placeholder="Beschreibung" rows="3" id="popupDescription"></textarea>
+            <input type="text" id="popupGenre" placeholder="Genre">
+            <textarea placeholder="Notizen" rows="3" id="popupNotes"></textarea>
 
+            <div class="stars" id="popupStars"> <!--KI-->
+                <input type="radio" id="popupStar5" name="popupRating" value="5">
+                <label for="popupStar5" title="5 stars">★</label>
+                <input type="radio" id="popupStar4" name="popupRating" value="4">
+                <label for="popupStar4" title="4 stars">★</label>
+                <input type="radio" id="popupStar3" name="popupRating" value="3">
+                <label for="popupStar3" title="3 stars">★</label>
+                <input type="radio" id="popupStar2" name="popupRating" value="2">
+                <label for="popupStar2" title="2 stars">★</label>
+                <input type="radio" id="popupStar1" name="popupRating" value="1">
+                <label for="popupStar1" title="1 star">★</label>
+            </div>
+
+            <div class="popup-footer">
+                <button id="popupSubmit">Fertig</button>
+            </div>
+        </div>
 </body>
 
 </html>

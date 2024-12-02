@@ -3,13 +3,13 @@ body {
     font-family: "Times New Roman", Times, serif;
     display: flex;
     margin: 0;
-    background-color: #e9e4f1;
+    background-color: #F2E9E4;
 }
 
 /* Sidebar selbst */
 .sidebar {
     width: 200px;
-    background-color: #ccc4da;
+    background-color: #c9ada7;
     color: #ecf0f1;
     padding: 20px;
     height: 100vh;
@@ -19,36 +19,88 @@ body {
     overflow-y: auto;
 
 }
-
-.sidebar h2 {
-    /*Meine Listen Text*/
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 50px;
-    color: #544567
-}
-
-.sidebar button {
-    background-color: #e9e4f1;
-    color: #000000;
+.home-button {
+    background-color: #c9ada7;
     border: none;
-    padding: 20px;
-    cursor: pointer;
-    margin-top: 10px;
-    /*Abstand nach oben*/
-    width: 100%;
+    padding: 10px 15px;
+    color: #22223B;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: inline-block;
 }
 
-.folder {
-    /*Ordner 1&2*/
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #e9e4f1;
-    color: #000000;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
+.home-button:hover {
+    background-color: #f2e9e4;
 }
+
+/* Pop-up für Ordner */
+.folder-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    border-radius: 8px;
+}
+
+.folder-popup input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+}
+
+.folder-popup h3 {
+    margin-top: 0;
+}
+
+.folder-popup .popup-footer {
+    text-align: right;
+}
+
+.folder-popup .popup-footer button {
+    background-color: #544567;
+    color: #ecf0f1;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Buttons oben rechts */
+.top-right-buttons {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    z-index: 20;
+}
+
+.top-right-buttons button {
+    background-color: #4a4e69;
+    color: #ecf0f1;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.top-right-buttons button:hover {
+    background-color: #9a8c98;
+}
+
 
 /* Hauptinhalt */
 .main-content {
@@ -57,10 +109,11 @@ body {
     flex-grow: 1;
 }
 
+
 .path {
     /*Aktueller Pfad*/
     font-size: 20px;
-    color: #544567;
+    color: #22223B;
     margin-bottom: 30px;
     /*Abstamd nach unten*/
 }
@@ -89,13 +142,13 @@ body {
 
 
 .entry-footer .actions button {
-    background-color: #544567;
+    background-color: #4a4e69;
     color: #ecf0f1;
     border: none;
-    padding: 8px 12px;
+    padding: 6px 10px;
     cursor: pointer;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .entry-card h4 {
@@ -125,7 +178,7 @@ body {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: #ffffff;
+        background-color: #F2E9E4;
         padding: 20px;
         width: 300px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -145,6 +198,16 @@ body {
 
     .popup h3 {
         margin-top: 0;
+    } 
+    .popup .stars {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .popup .stars label {
+        font-size: 1.5em;
+        cursor: pointer;
     }
 
     .popup-footer {
@@ -152,13 +215,15 @@ body {
     }
 
     .popup-footer button {
-        background-color: #544567;
+        background-color: #4a4e69;
         color: #ecf0f1;
         border: none;
-        padding: 8px 12px;
+        padding: 6px 10px;
         cursor: pointer;
         border-radius: 5px;
     }
+   
+    
 
 /* Sterne */
 .stars {
