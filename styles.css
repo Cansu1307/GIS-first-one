@@ -58,7 +58,9 @@ body {
     border: 1px solid #bdc3c7;
     border-radius: 5px;
 }
-
+.popup input[type = "radio"] {
+    width: auto;
+}
 .folder-popup h3 {
     margin-top: 0;
     color: #22223B;
@@ -242,7 +244,7 @@ body {
 }
 
 .star-rating label {
-    color: #ddd;
+    color: #544567;
     /* Unausgewählte Sterne*/
     cursor: pointer; /*Maus selbst*/
     font-size: 1.5em;

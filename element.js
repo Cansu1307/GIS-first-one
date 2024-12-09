@@ -1,3 +1,13 @@
+/*async function requestTextWithGET(url) {
+    const response = await fetch(url); //kommt in die Clientseite (clientseite ist HTML, CSS und Javascripts)
+    console.log('Response:', response); // vollständiges Response-Objekt
+    const text = await response.text();
+    console.log('Response-Text:', text); // Text aus dem Response-Body
+  }
+  //fetch soll immer dann auftauchen sobald es im code auftaucht
+  requestTextWithGET('http://127.0.0.1:3000');
+  console.log('Zwischenzeitlich weiterarbeiten...');*/
+
 document.addEventListener("DOMContentLoaded", () => {
     const addButton = document.getElementById("addButton");
     const popup = document.getElementById("popup");
