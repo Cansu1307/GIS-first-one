@@ -3,7 +3,7 @@ const sqlite3 = require('sqlite3');
 const sqlite = require('sqlite');
 
 // SQLite Datei angeben
-const dbFilePath = 'hochschule.db';
+const dbFilePath = 'hochschule.db'; //Bingewatch.db machen
 
 async function main() {
   // Mit Datenbank verbinden
