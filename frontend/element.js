@@ -26,10 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
         stars: document.getElementsByName("popupRating"),
     };
 
-    // Lokaler Speicher für Einträge
-    let entries = JSON.parse(localStorage.getItem("entries")) || [];
+    // Lokaler Speicher für Einträge einmalig 
+    let entries = JSON.parse(localStorage.getItem("entries")) || []; //auskommentieren, um server mit fetch zuzugreifen
+    //statt aus localstorage, mit fetch, im Web API gucken 
  
-    // sollte eig popup für ordner zeigen, idk what happened
+    // sollte eig popup für ordner zeigen, 
   createFolderBtn.addEventListener("click", () => {
     folderPopup.style.display = "block";
 });
@@ -88,18 +89,24 @@ folderPopupSave.addEventListener("click", () => {
     };
 
     // Eintrag hinzufügen
-    const addEntry = (entry) => {
+    const addEntry = async (entry) => {
         entries.push(entry);
-        saveEntries();
+    //   saveEntries();
+        const response = await fetch('http://localhost:3000/film', {
+          method: 'post',
+          body: JSON.stringify(entry) ,
+        });
+    
+      
         displayEntries();
     };
 
     // Einträge speichern hopefully, idk if it functions tbh
     const saveEntries = () => {
-        localStorage.setItem("entries", JSON.stringify(entries));
+        //localStorage.setItem("entries", JSON.stringify(entries)); //muss man auskommentieren, um datensatz zu server 
     };
 
-    // Popup-Felder leer damit man selbst einfuügen kann
+    // Popup-Felder leer damit man selbst einfügen kann
     const clearPopupFields = () => {
         popupFields.imageURL.value = "";
         popupFields.name.value = "";
