@@ -23,13 +23,15 @@ const server = http.createServer(async (request, response) => {
       case '/film': { // /film
         const filmCollection = mongoClient.db('filmwebseite').collection('film');
         switch (request.method) { 
+          
           case 'GET': 
             let result;
               result = await filmCollection.find({}).toArray();
             response.setHeader('Content-Type', 'application/json');
             response.write(JSON.stringify(result));
             break;
-          case 'POST':
+          
+            case 'POST': //neuen film hinmzufügen 
             let jsonString = '';
             request.on('data', data => {
               jsonString += data; //entnimmt alle Daten entgegen und addiert sie
@@ -38,6 +40,35 @@ const server = http.createServer(async (request, response) => {
               filmCollection.insertOne(JSON.parse(jsonString)); //wird wieder zum Objekt und speichert direkt in die Datenbank
             });
             break;
+          
+            case 'PUT': // Film bearbeiten
+          let putData = '';
+          request.on('data', chunk => { putData += chunk; });
+          request.on('end', async () => {
+            const { id, ...updatedData } = JSON.parse(putData); // id und neue Daten entnehmen
+            const result = await filmCollection.updateOne({ _id: new mongodb.ObjectId(id) }, { $set: updatedData });
+            response.write(JSON.stringify({ message: 'Film aktualisiert!', modifiedCount: result.modifiedCount }));
+            response.end();
+          });
+          return;
+
+        case 'DELETE': // Film löschen
+          const deleteId = url.searchParams.get('id'); // ID aus der URL entnehmen
+          if (deleteId) {
+            const result = await filmCollection.deleteOne({ _id: new mongodb.ObjectId(deleteId) });
+            response.write(JSON.stringify({ message: 'Film gelöscht!', deletedCount: result.deletedCount }));
+          } else {
+            response.statusCode = 400; // Fehlerhafte Anfrage
+            response.write(JSON.stringify({ error: 'ID für Löschung erforderlich!' }));
+          }
+          break;
+
+        default:
+          response.statusCode = 405; // Methode nicht erlaubt
+          response.write(JSON.stringify({ error: 'Methode nicht unterstützt!' }));
+      }
+        
+          
         }
         break;
       }

@@ -1,12 +1,4 @@
-/*async function requestTextWithGET(url) {
-    const response = await fetch(url); //kommt in die Clientseite (clientseite ist HTML, CSS und Javascripts)
-    console.log('Response:', response); // vollständiges Response-Objekt
-    const text = await response.text();
-    console.log('Response-Text:', text); // Text aus dem Response-Body
-  }
-  //fetch soll immer dann auftauchen sobald es im code auftaucht
-  requestTextWithGET('http://127.0.0.1:3000');
-  console.log('Zwischenzeitlich weiterarbeiten...');*/
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const addButton = document.getElementById("addButton");
@@ -27,154 +19,166 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Lokaler Speicher für Einträge einmalig 
-    let entries = JSON.parse(localStorage.getItem("entries")) || []; //auskommentieren, um server mit fetch zuzugreifen
+    //let entries = JSON.parse(localStorage.getItem("entries")) || []; //auskommentieren, um server mit fetch zuzugreifen
     //statt aus localstorage, mit fetch, im Web API gucken 
- 
-    // sollte eig popup für ordner zeigen, 
-  createFolderBtn.addEventListener("click", () => {
-    folderPopup.style.display = "block";
-});
 
-// Schließt Pop-up, wenn "Abbrechen" geklickt wird
-folderPopupCancel.addEventListener("click", () => {
-    folderPopup.style.display = "none";
-});
+    // Einträge vom Server abrufen
+    const fetchEntries = async () => {
+    const response = await fetch("http://127.0.0.1:3000/film");
+    entries = await response.json();
+    displayEntries();
+};
 
-// save the folder 
-folderPopupSave.addEventListener("click", () => {
-    const folderName = document.getElementById("folderNameInput").value;
-    if (folderName) {
-        alert(`Ordner "${folderName}" erstellt!`);
-        folderPopup.style.display = "none";
-    } else {
-        alert("Bitte einen Ordnernamen eingeben!");
-    }
-});
-    // Einträge anzeigen
-    const displayEntries = () => {
-        // Entferne mein Beispiele von black panther in HTML, außer dem "+ Hinzufügen"-Button
-        const allEntries = Array.from(grid.children);
-        allEntries.forEach(child => {
-            if (child.id !== "addButton") {
-                grid.removeChild(child);
-            }
-        });
-        //soll anzegen
-        entries.forEach((entry, index) => {
-            const entryDiv = document.createElement("div");
-            entryDiv.classList.add("entry-footer");
-            entryDiv.innerHTML = `
-                <img src="${entry.imageURL}" alt="Bild des Films" style="width: 100%; height: auto;">
-                <h4>${entry.name}</h4>
-                <p>${entry.description}</p>
-                <p>${entry.genre}</p>
-                <p>${entry.notes}</p>
-                <div class="stars">${generateStarsHTML(entry.rating)}</div>
-                <div class="actions">
-                    <button class="edit" data-index="${index}">Bearbeiten</button>
-                    <button class="delete" data-index="${index}">Löschen</button>
-                </div>
-            `;
-            grid.insertBefore(entryDiv, addButton);
-        });
-    };
-
-    // Sterne-Bewertung machen
-    const generateStarsHTML = (rating) => {
-        let starsHTML = "";
-        for (let i = 5; i > 0; i--) {
-            starsHTML += `<label title="${i} stars">${i <= rating ? "★" : "☆"}</label>`;
+// Einträge anzeigen
+const displayEntries = () => {
+    // Alle vorhandenen Einträge löschen (außer dem "+ Hinzufügen"-Button)
+    const allEntries = Array.from(grid.children);
+    allEntries.forEach((child) => {
+        if (child.id !== "addButton") {
+            grid.removeChild(child);
         }
-        return starsHTML;
-    };
+    });
+      // Neue Einträge anzeigen
+      entries.forEach((entry, index) => {
+        const entryDiv = document.createElement("div");
+        entryDiv.classList.add("entry-footer");
+        entryDiv.innerHTML = `
+            <img src="${entry.imageURL}" alt="Bild des Films" style="width: 100%; height: auto;">
+            <h4>${entry.name}</h4>
+            <p>${entry.description}</p>
+            <p>${entry.genre}</p>
+            <p>${entry.notes}</p>
+            <div class="stars">${generateStarsHTML(entry.rating)}</div>
+            <div class="actions">
+                <button class="edit" data-id="${entry._id}">Bearbeiten</button>
+                <button class="delete" data-id="${entry._id}">Löschen</button>
+            </div>
+        `;
+        grid.insertBefore(entryDiv, addButton);
+    });
+};
 
-    // Eintrag hinzufügen
-    const addEntry = async (entry) => {
-        entries.push(entry);
-    //   saveEntries();
-        const response = await fetch('http://localhost:3000/film', {
-          method: 'post',
-          body: JSON.stringify(entry) ,
-        });
-    
-      
-        displayEntries();
-    };
+// Sterne-Bewertung generieren
+const generateStarsHTML = (rating) => {
+    let starsHTML = "";
+    for (let i = 5; i > 0; i--) {
+        starsHTML += `<label title="${i} stars">${i <= rating ? "★" : "☆"}</label>`;
+    }
+    return starsHTML;
+};
 
-    // Einträge speichern hopefully, idk if it functions tbh
-    const saveEntries = () => {
-        //localStorage.setItem("entries", JSON.stringify(entries)); //muss man auskommentieren, um datensatz zu server 
-    };
-
-    // Popup-Felder leer damit man selbst einfügen kann
-    const clearPopupFields = () => {
-        popupFields.imageURL.value = "";
-        popupFields.name.value = "";
-        popupFields.description.value = "";
-        popupFields.genre.value = "";
-        popupFields.notes.value = "";
-        popupFields.stars.forEach(star => star.checked = false);
-    };
-
-    // Popup-Fenster soll sich öffnen
-    addButton.addEventListener("click", () => {
-        popup.style.display = "block";
+// Eintrag hinzufügen
+const addEntry = async (entry) => {
+    const response = await fetch("http://127.0.0.1:3000/film", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(entry),
     });
 
-    // Popup-Fenster schließen und Eintrag hinzufügen
-    popupSubmit.addEventListener("click", () => { //vor add. 
-        const rating = Array.from(popupFields.stars).find(star => star.checked)?.value || 0;
-        const newEntry = {
-            imageURL: popupFields.imageURL.value, //einträge bleiben von oben eingegeben
-            name: popupFields.name.value,
-            description: popupFields.description.value,
-            genre: popupFields.genre.value,
-            notes: popupFields.notes.value,
-            rating: parseInt(rating),
-        };
-        addEntry(newEntry); //neues hinzufügen feld erscheint
-        clearPopupFields();
-        popup.style.display = "none";
+    if (response.ok) {
+        await fetchEntries(); // Neue Daten abrufen und anzeigen
+    }
+};
+
+// Eintrag bearbeiten
+const updateEntry = async (id, updatedEntry) => {
+    const response = await fetch("http://127.0.0.1:3000/film", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id, ...updatedEntry }),
     });
 
-    // Aktionen bearbeiten/löschen für Ordner... sollte funktionieren aber ich kann ordner nicht sehen
-    grid.addEventListener("click", (event) => {
-        const target = event.target;
-        const index = target.dataset.index;
-        if (target.classList.contains("delete")) {
-            entries.splice(index, 1);
-            saveEntries();
-            displayEntries();
-        } else if (target.classList.contains("edit")) {
-            const entry = entries[index];
+    if (response.ok) {
+        await fetchEntries(); // Neue Daten abrufen und anzeigen
+    }
+};
+
+// Eintrag löschen
+const deleteEntry = async (id) => {
+    const response = await fetch(`http://127.0.0.1:3000/film?id=${id}`, {
+        method: "DELETE",
+    });
+
+    if (response.ok) {
+        await fetchEntries(); // Neue Daten abrufen und anzeigen
+    }
+};
+
+// Popup-Felder leeren
+const clearPopupFields = () => {
+    popupFields.imageURL.value = "";
+    popupFields.name.value = "";
+    popupFields.description.value = "";
+    popupFields.genre.value = "";
+    popupFields.notes.value = "";
+    popupFields.stars.forEach((star) => (star.checked = false));
+};
+
+// Popup-Fenster öffnen
+addButton.addEventListener("click", () => {
+    popup.style.display = "block";
+});
+
+// Popup-Fenster schließen und neuen Eintrag hinzufügen
+popupSubmit.addEventListener("click", () => {
+    const rating = Array.from(popupFields.stars).find((star) => star.checked)?.value || 0;
+    const newEntry = {
+        imageURL: popupFields.imageURL.value,
+        name: popupFields.name.value,
+        description: popupFields.description.value,
+        genre: popupFields.genre.value,
+        notes: popupFields.notes.value,
+        rating: parseInt(rating),
+    };
+    addEntry(newEntry);
+    clearPopupFields();
+    popup.style.display = "none";
+});
+
+// Aktionen: Bearbeiten oder Löschen
+grid.addEventListener("click", (event) => {
+    const target = event.target;
+    const id = target.dataset.id;
+
+    if (target.classList.contains("delete")) {
+        deleteEntry(id);
+    } else if (target.classList.contains("edit")) {
+        const entry = entries.find((entry) => entry._id === id);
+        if (entry) {
             popupFields.imageURL.value = entry.imageURL;
             popupFields.name.value = entry.name;
             popupFields.description.value = entry.description;
             popupFields.genre.value = entry.genre;
             popupFields.notes.value = entry.notes;
-            popupFields.stars.forEach(star => star.checked = star.value == entry.rating);
+            popupFields.stars.forEach((star) => (star.checked = star.value == entry.rating));
+
             popup.style.display = "block";
 
-            // Update-bearbeitung für Eintrag
             popupSubmit.onclick = () => {
-                const rating = Array.from(popupFields.stars).find(star => star.checked)?.value || 0;
-                entries[index] = {
+                const updatedEntry = {
                     imageURL: popupFields.imageURL.value,
                     name: popupFields.name.value,
                     description: popupFields.description.value,
                     genre: popupFields.genre.value,
                     notes: popupFields.notes.value,
-                    rating: parseInt(rating),
+                    rating: parseInt(
+                        Array.from(popupFields.stars).find((star) => star.checked)?.value || 0
+                    ),
                 };
-                saveEntries();
-                displayEntries();
+                updateEntry(id, updatedEntry);
                 clearPopupFields();
                 popup.style.display = "none";
-                popupSubmit.onclick = null; // muss man vlt ändern damit bearbeitetts gleiche stelle bleibt? nicht .onlick sondern event listen
+                popupSubmit.onclick = null; // Event-Handler zurücksetzen
             };
         }
-    });
-
-    // Initialisierung
-    displayEntries();
+    }
 });
+
+// Initialisierung: Einträge abrufen und anzeigen
+fetchEntries();
+});
+ 
