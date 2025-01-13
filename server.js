@@ -72,13 +72,13 @@ const server = http.createServer(async (request, response) => {
         }
         break;
       }
-      case '/clearAll': //wenn es eine Option gäbe um ALLES zu löschen 
+      /*case '/clearAll': //wenn es eine Option gäbe um ALLES zu löschen 
         await mongoClient.db('filmwebseite').collection('film').drop(); //im Skript NoSQl: MongoDB Befehle: deleteone um einen Eintrag auf der Webseite zu löschen
         break;
       default:
         response.statusCode = 404;
     }
-    response.end();
+    response.end();*/
   }
 );
 
