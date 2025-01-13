@@ -16,6 +16,8 @@ async function startServer() {
 const server = http.createServer(async (request, response) => {
     response.statusCode = 200; //hat funktioniert
     response.setHeader('Access-Control-Allow-Origin', '*'); // bei CORS Fehler lasss drinne 
+    response.setHeader("Access-Control-Allow-Headers", "*"); // Erlaubt das Empfangen von Requests mit Headern, z. B. Content-Type */
+    response.setHeader("Access-Control-Allow-Methods", "*"); // Erlaubt alle HTTP-Methoden */
 
     let url = new URL(request.url || '', `http://${request.headers.host}`);
     console.log(url)
@@ -69,16 +71,16 @@ const server = http.createServer(async (request, response) => {
       }
         
           
-        }
+        //}
         break;
       }
       /*case '/clearAll': //wenn es eine Option gäbe um ALLES zu löschen 
         await mongoClient.db('filmwebseite').collection('film').drop(); //im Skript NoSQl: MongoDB Befehle: deleteone um einen Eintrag auf der Webseite zu löschen
         break;
       default:
-        response.statusCode = 404;
+        response.statusCode = 404;*/
     }
-    response.end();*/
+    response.end();
   }
 );
 
