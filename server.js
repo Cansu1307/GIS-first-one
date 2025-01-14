@@ -65,7 +65,7 @@ const server = http.createServer(async (request, response) => {
           }
           break;
 
-        default:
+        /*default:
           response.statusCode = 405; // Methode nicht erlaubt
           response.write(JSON.stringify({ error: 'Methode nicht unterstützt!' }));
       }
@@ -73,7 +73,7 @@ const server = http.createServer(async (request, response) => {
           
         //}
         break;
-      }
+      }*/
       /*case '/clearAll': //wenn es eine Option gäbe um ALLES zu löschen 
         await mongoClient.db('filmwebseite').collection('film').drop(); //im Skript NoSQl: MongoDB Befehle: deleteone um einen Eintrag auf der Webseite zu löschen
         break;
@@ -82,6 +82,7 @@ const server = http.createServer(async (request, response) => {
     }
     response.end();
   }
-);
+};
 
 startServer();
+})

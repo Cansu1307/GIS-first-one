@@ -124,7 +124,7 @@ addButton.addEventListener("click", () => {
 });
 
 // Popup-Fenster schließen und neuen Eintrag hinzufügen
-popupSubmit.addEventListener("click", () => {
+popupSubmit.onclick = () => {
     const rating = Array.from(popupFields.stars).find((star) => star.checked)?.value || 0;
     const newEntry = {
         imageURL: popupFields.imageURL.value,
@@ -137,7 +137,7 @@ popupSubmit.addEventListener("click", () => {
     addEntry(newEntry);
     clearPopupFields();
     popup.style.display = "none";
-});
+};
 
 // Aktionen: Bearbeiten oder Löschen
 grid.addEventListener("click", (event) => {
