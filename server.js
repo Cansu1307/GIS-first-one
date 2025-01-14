@@ -83,6 +83,5 @@ const server = http.createServer(async (request, response) => {
     response.end();
   }
 };
-
-startServer();
 })
+startServer();
